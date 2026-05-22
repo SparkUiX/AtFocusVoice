@@ -1,0 +1,13 @@
+﻿# 编译文件夹
+bin/
+obj/
+
+# 用户特定的文件
+*.csproj.user
+*.pubxml.user
+.vs/
+~$*.docx
+~WRL*.tmp
+
+# 本地设置或缓存
+AppData/
