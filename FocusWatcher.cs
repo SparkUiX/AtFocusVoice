@@ -115,7 +115,7 @@ namespace AtFocusVoice
             try
             {
                 using var enumerator = new MMDeviceEnumerator();
-                var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+                using var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 var sessions = device.AudioSessionManager.Sessions;
 
                 for (int i = 0; i < sessions.Count; i++)

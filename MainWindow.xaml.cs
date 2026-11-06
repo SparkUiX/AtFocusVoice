@@ -131,11 +131,12 @@ namespace AtFocusVoice
                     return null;
                 }
 
-                Icon? icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
+                using Icon? icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
                 if (icon != null)
                 {
                     using MemoryStream iconStream = new();
-                    icon.ToBitmap().Save(iconStream, System.Drawing.Imaging.ImageFormat.Png);
+                    using Bitmap bitmap = icon.ToBitmap();
+                    bitmap.Save(iconStream, System.Drawing.Imaging.ImageFormat.Png);
                     iconStream.Seek(0, SeekOrigin.Begin);
 
                     BitmapImage bitmapImage = new();
@@ -160,7 +161,7 @@ namespace AtFocusVoice
             try
             {
                 using var enumerator = new MMDeviceEnumerator();
-                var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+                using var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 var sessions = device.AudioSessionManager.Sessions;
 
                 for (int i = 0; i < sessions.Count; i++)

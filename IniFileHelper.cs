@@ -47,7 +47,7 @@ namespace AtFocusVoice
             return buffer.ToString();
         }
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool WritePrivateProfileString(string section, string key, string val, string filePath);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
